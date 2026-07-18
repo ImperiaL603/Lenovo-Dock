@@ -48,8 +48,8 @@
     const res = await fetch(`${API}${path}`, { headers: { Authorization: `Bearer ${token}` } });
     if (res.status === 204 || res.status === 202) return null; // nothing playing / not ready
     if (!res.ok) {
-      const body = await res.json().catch(() => ({}));
-      throw new Error(`${res.status} — ${body.error?.message || 'no message'}`);
+      const text = await res.text().catch(() => '');
+      throw new Error(`${res.status} — ${text || 'empty body'}`);
     }
     return res.json();
   }
