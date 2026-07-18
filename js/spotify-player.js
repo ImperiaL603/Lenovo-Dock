@@ -34,6 +34,14 @@
   let currentContextUri = null;
   let onPlaybackState = () => {};
 
+  // TEMP debug readout — remove once polling is confirmed working.
+  const debugEl = document.createElement('div');
+  debugEl.style.cssText =
+    'position:fixed;top:8px;left:8px;z-index:99;font:12px monospace;color:#0f0;' +
+    'background:rgba(0,0,0,.75);padding:6px 8px;white-space:pre-wrap;max-width:70vw;';
+  document.body.appendChild(debugEl);
+  const debug = (msg) => { debugEl.textContent = 'SPOTIFY: ' + msg; };
+
   async function api(path) {
     const token = await SpotifyAuth.getAccessToken();
     if (!token) return null;
@@ -98,14 +106,18 @@
   }
 
   async function poll() {
+    if (!SpotifyAuth.isConnected()) return debug('not connected');
     let data;
     try {
       data = await api('/me/player');
     } catch (err) {
-      return; // transient error — keep last render, retry next tick
+      return debug('error — ' + err.message);
     }
     const item = data?.item;
     playing = Boolean(data?.is_playing && item);
+    debug(data === null
+      ? '204 — no active device / nothing playing'
+      : `ok · is_playing=${data.is_playing} · track=${item ? item.name : 'none'}`);
 
     if (item) {
       if (item.id !== currentTrackId) {
