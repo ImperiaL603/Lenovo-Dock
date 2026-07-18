@@ -75,6 +75,21 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
+// ---------- Album art + blurred background ----------
+// One helper feeds both the album-art thumbnail and the blurred background,
+// so they can never drift. Real polling will call this with the Spotify art URL.
+const albumArtImg = document.getElementById('album-art-img');
+const spotifyBgImg = document.getElementById('spotify-bg-img');
+
+function setAlbumArt(url) {
+  albumArtImg.src = url;
+  spotifyBgImg.src = url;
+  modes.spotify.classList.toggle('has-art', Boolean(url));
+}
+
+// TEMP dev preview until real polling feeds album art — remove with the sample asset.
+setAlbumArt('assets/sample-album-art.svg');
+
 // ---------- Lyrics line preview animation (placeholder only) ----------
 // Just cycles through some dummy lines so we can see/tune the spring motion.
 // Will be replaced by real lrclib-synced lines driven by the playback timer.

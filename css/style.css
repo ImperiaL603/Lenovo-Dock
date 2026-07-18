@@ -390,7 +390,45 @@ body.settings-open #spotify-mode .spotify-layout {
 /* ============================================================
    SPOTIFY MODE
    ============================================================ */
+/* Blurred album art background. scale() hides the blur bleed at the edges;
+   the ::after overlay guarantees text contrast over bright artwork. */
+.spotify-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.25);
+  filter: blur(50px) brightness(0.6) saturate(1.1);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-smooth);
+  z-index: 0;
+}
+
+#spotify-mode.has-art .spotify-bg {
+  opacity: 1;
+}
+
+#spotify-mode::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+  pointer-events: none;
+}
+
+#spotify-mode.has-art .album-art-box img {
+  display: block;
+}
+
+#spotify-mode.has-art .album-art-placeholder {
+  display: none;
+}
+
 .spotify-layout {
+  position: relative;
+  z-index: 1;
   height: 100%;
   display: flex;
   align-items: center;
@@ -412,6 +450,7 @@ body.settings-open #spotify-mode .spotify-layout {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  border-radius: 12px;
 }
 
 .album-art-box img {
@@ -544,7 +583,7 @@ body.settings-open #spotify-mode .spotify-layout {
 }
 
 .playlist-name {
-  margin-top: 1rem;
+  margin-bottom: 1rem;
   font-size: 0.95rem;
   color: var(--fg-dim);
 }

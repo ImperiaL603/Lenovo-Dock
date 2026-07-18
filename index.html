@@ -60,6 +60,9 @@
   <!-- ===================== SPOTIFY MODE ===================== -->
   <section id="spotify-mode" class="mode">
 
+    <!-- Blurred album art fills the background; mirrors #album-art-img via setAlbumArt() -->
+    <img id="spotify-bg-img" class="spotify-bg" alt="" />
+
     <div class="spotify-layout">
 
       <!-- Left: player -->
@@ -90,13 +93,13 @@
 
       <!-- Right: lyrics -->
       <div class="lyrics-column">
+        <div class="playlist-name" id="playlist-name">Playlist Name</div>
+
         <div class="lyrics-window" id="lyrics-window">
           <div class="lyric-line prev" id="lyric-prev">Previous line goes here</div>
           <div class="lyric-line current" id="lyric-current">Lyrics Window</div>
           <div class="lyric-line next" id="lyric-next">Next line goes here</div>
         </div>
-
-        <div class="playlist-name" id="playlist-name">Playlist Name</div>
       </div>
 
     </div>
