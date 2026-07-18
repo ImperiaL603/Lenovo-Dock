@@ -227,7 +227,6 @@ button {
 
 .album-art-box {
   position: relative;
-  border: 1px solid var(--border);
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
@@ -323,7 +322,6 @@ button {
 }
 
 .lyrics-window {
-  border: 1px solid var(--border);
   height: 46vh;
   display: flex;
   flex-direction: column;
