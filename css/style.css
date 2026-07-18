@@ -114,6 +114,7 @@ body.mode-clock .bg-video {
   font-weight: 400;
   line-height: 1;
   text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 .clock-date {
   font-family: var(--font-body);
@@ -121,6 +122,7 @@ body.mode-clock .bg-video {
   font-weight: 500;
   color: var(--fg);
   margin-top: 0.6rem;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.95), 0 3px 30px rgba(0, 0, 0, 0.7);
 }
 
 .clock-time {
@@ -130,6 +132,7 @@ body.mode-clock .bg-video {
   justify-content: center;
   gap: 0.5rem;
   font-family: var(--font-body);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.95), 0 3px 30px rgba(0, 0, 0, 0.7);
 }
 
 .clock-time .dash {
@@ -164,6 +167,10 @@ body.mode-clock .bg-video {
   transition: max-height 0.5s var(--ease-smooth),
               opacity 0.4s var(--ease-smooth),
               transform 0.5s var(--ease-smooth);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 30px rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
 }
 
 #clock-mode.panel-open .panel {
@@ -199,8 +206,8 @@ body.mode-clock .bg-video {
   position: absolute;
   right: 5vw;
   bottom: 4vh;
-  width: 3.4rem;
-  height: 3.4rem;
+  width: 2.8rem;
+  height: 2.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -209,6 +216,9 @@ body.mode-clock .bg-video {
   line-height: 1;
   transition: transform 0.25s var(--ease-spring), background 0.25s;
   z-index: 5;
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
 }
 
 .add-btn:active {
