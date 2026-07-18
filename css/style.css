@@ -45,6 +45,7 @@ html, body {
   overflow: hidden;
   -webkit-user-select: none;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {
@@ -53,6 +54,7 @@ button {
   background: none;
   border: none;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* ============================================================
