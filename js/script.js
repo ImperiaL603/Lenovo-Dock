@@ -49,9 +49,20 @@ const modes = {
   spotify: document.getElementById('spotify-mode'),
 };
 
+const bgVideo = document.getElementById('bg-video');
+setMode('clock');
+
 function setMode(name) {
   Object.values(modes).forEach(el => el.classList.remove('active'));
   modes[name].classList.add('active');
+
+  document.body.classList.toggle('mode-clock', name === 'clock');
+
+  if (name === 'clock') {
+    bgVideo.play();
+  } else {
+    bgVideo.pause(); // saves CPU/GPU while hidden behind Spotify mode
+  }
 }
 
 // TODO: replace with real detection — switch to 'spotify' when the 4s poll
