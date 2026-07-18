@@ -104,3 +104,10 @@ setInterval(() => {
   lyricIndex = (lyricIndex + 1) % dummyLyrics.length;
   renderLyrics();
 }, 3500);
+
+// ---------- Settings panel toggle ----------
+const settingsBtn = document.getElementById('settings-btn');
+
+settingsBtn.addEventListener('click', () => {
+  document.body.classList.toggle('settings-open');
+});

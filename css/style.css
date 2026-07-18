@@ -237,6 +237,84 @@ body.mode-clock .bg-video {
   transform: rotate(45deg) scale(0.92);
 }
 
+/* ---------- Settings button (bottom-left) ---------- */
+.settings-btn {
+  position: absolute;
+  left: 5vw;
+  bottom: 4vh;
+  width: 2.8rem;
+  height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1;
+  transition: transform 0.25s var(--ease-spring), background 0.25s;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.settings-btn span {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.settings-btn:active {
+  transform: scale(0.92);
+}
+
+body.settings-open .settings-btn {
+  transform: rotate(45deg);
+}
+
+body.settings-open .settings-btn:active {
+  transform: rotate(45deg) scale(0.92);
+}
+
+/* ---------- Settings panel ---------- */
+.settings-panel {
+  position: absolute;
+  left: 50%;
+  bottom: 4vh;
+  transform: translate(-50%, 30px);
+  width: min(70vw, 850px);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: max-height 0.5s var(--ease-smooth),
+              opacity 0.4s var(--ease-smooth),
+              transform 0.5s var(--ease-smooth);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 30px rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+}
+
+body.settings-open .settings-panel {
+  max-height: 60vh;
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+
+.settings-panel-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+body.settings-open #clock-mode .clock-block {
+  transform: translateY(-14vh);
+}
+
+body.settings-open #spotify-mode .spotify-layout {
+  transform: translateY(-8vh);
+}
+
 /* ============================================================
    SPOTIFY MODE
    ============================================================ */

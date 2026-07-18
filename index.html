@@ -15,7 +15,7 @@
 <body>
 
   <video id="bg-video" class="bg-video" autoplay muted loop playsinline
-       src="assets\video\endless-summer-horizon.1920x1080.mp4"></video>
+       src="assets/video/endless-summer-horizon.1920x1080.mp4"></video>
 
   <!-- Dev-only helper, remove once real Spotify playback detection is wired up -->
   <div id="dev-toggle-hint">press M to toggle clock / spotify mode (dev only)</div>
@@ -103,6 +103,15 @@
 
   </section>
 
-  <script src="js/script.js"></script>
+<!-- Settings panel: hidden until gear icon is tapped -->
+<div class="settings-panel" id="settings-panel">
+  <div class="settings-panel-title">Settings</div>
+</div>
+
+<button id="settings-btn" class="settings-btn" aria-label="Open settings">
+  <span>&#9881;</span>
+</button>
+
+<script src="js/script.js"></script>
 </body>
 </html>
