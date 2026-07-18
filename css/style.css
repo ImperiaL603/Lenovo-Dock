@@ -221,6 +221,8 @@ body.mode-clock .bg-video {
   background: rgba(0, 0, 0, 0.35);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 30px rgba(0, 0, 0, 0.5);
   border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 .add-btn:active {
