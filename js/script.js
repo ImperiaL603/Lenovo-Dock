@@ -65,9 +65,9 @@ function setMode(name) {
   }
 }
 
-// TODO: replace with real detection — switch to 'spotify' when the 4s poll
-// reports active playback, and back to 'clock' after N seconds of no playback.
 let currentMode = 'clock';
+
+// "M" stays as a dev shortcut for previewing modes without playback.
 window.addEventListener('keydown', (e) => {
   if (e.key.toLowerCase() === 'm') {
     currentMode = currentMode === 'clock' ? 'spotify' : 'clock';
@@ -75,20 +75,30 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-// ---------- Album art + blurred background ----------
-// One helper feeds both the album-art thumbnail and the blurred background,
-// so they can never drift. Real polling will call this with the Spotify art URL.
-const albumArtImg = document.getElementById('album-art-img');
-const spotifyBgImg = document.getElementById('spotify-bg-img');
+// ---------- Playback-driven mode switching ----------
+// The player polls every 4s and reports playback state; we switch to Spotify
+// mode on playback and back to Clock after a grace period of no playback.
+const RETURN_TO_CLOCK_MS = 30000;
+let idleTimer = null;
 
-function setAlbumArt(url) {
-  albumArtImg.src = url;
-  spotifyBgImg.src = url;
-  modes.spotify.classList.toggle('has-art', Boolean(url));
+function handlePlayback(isPlaying) {
+  if (isPlaying) {
+    clearTimeout(idleTimer);
+    idleTimer = null;
+    if (currentMode !== 'spotify') {
+      currentMode = 'spotify';
+      setMode('spotify');
+    }
+  } else if (currentMode === 'spotify' && !idleTimer) {
+    idleTimer = setTimeout(() => {
+      idleTimer = null;
+      currentMode = 'clock';
+      setMode('clock');
+    }, RETURN_TO_CLOCK_MS);
+  }
 }
 
-// TEMP dev preview until real polling feeds album art — remove with the sample asset.
-setAlbumArt('assets/sample-album-art.svg');
+SpotifyPlayer.start(handlePlayback);
 
 // ---------- Lyrics line preview animation (placeholder only) ----------
 // Just cycles through some dummy lines so we can see/tune the spring motion.
