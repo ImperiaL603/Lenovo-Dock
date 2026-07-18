@@ -337,6 +337,48 @@ body.settings-open .settings-panel {
   font-weight: 700;
 }
 
+.settings-section-label {
+  margin-top: 1rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--fg-dim);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.wallpaper-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-height: 42vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.wallpaper-chip {
+  padding: 0.5rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--fg-dim);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  transition: transform 0.2s var(--ease-spring), background 0.2s, color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.wallpaper-chip:active {
+  transform: scale(0.94);
+}
+
+.wallpaper-chip.selected {
+  color: var(--fg);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--border);
+}
+
 body.settings-open #clock-mode .clock-block {
   transform: translateY(-14vh);
 }
