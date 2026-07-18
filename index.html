@@ -17,11 +17,8 @@
   <video id="bg-video" class="bg-video" autoplay muted loop playsinline
        src="assets/video/endless-summer-horizon.1920x1080.mp4"></video>
 
-  <!-- Dev-only helper, remove once real Spotify playback detection is wired up -->
-  <div id="dev-toggle-hint">press M to toggle clock / spotify mode (dev only)</div>
-
-  <!-- ===================== CLOCK MODE ===================== -->
-  <section id="clock-mode" class="mode active">
+  <!-- ===================== CLOCK ===================== -->
+  <section id="clock-mode">
 
     <div class="clock-block" id="clock-block">
       <div class="clock-day" id="clock-day">Thursday</div>
@@ -57,60 +54,6 @@
 
   </section>
 
-  <!-- ===================== SPOTIFY MODE ===================== -->
-  <section id="spotify-mode" class="mode">
-
-    <!-- Blurred album art fills the background; mirrors #album-art-img via setAlbumArt() -->
-    <img id="spotify-bg-img" class="spotify-bg" alt="" />
-
-    <div class="spotify-layout">
-
-      <!-- Left: player -->
-      <div class="player-column">
-
-        <div class="album-art-box" id="album-art-box">
-          <img id="album-art-img" alt="" />
-          <div class="album-art-placeholder" id="album-art-placeholder">Album Art</div>
-
-          <div class="control-buttons" id="control-buttons" aria-disabled="true">
-            <button class="ctrl-btn" data-action="prev" disabled>⏮</button>
-            <button class="ctrl-btn" data-action="playpause" disabled>⏯</button>
-            <button class="ctrl-btn" data-action="next" disabled>⏭</button>
-          </div>
-        </div>
-
-        <div class="progress-row">
-          <span class="progress-time" id="progress-elapsed">0:46</span>
-          <div class="progress-track">
-            <div class="progress-fill" id="progress-fill"></div>
-          </div>
-          <span class="progress-time" id="progress-total">3:43</span>
-        </div>
-
-        <div class="song-name" id="song-name">Song Name</div>
-        <div class="artist-names" id="artist-names">Artists' Names</div>
-      </div>
-
-      <!-- Right: lyrics -->
-      <div class="lyrics-column">
-        <div class="playlist-name" id="playlist-name">Playlist Name</div>
-
-        <div class="lyrics-window" id="lyrics-window">
-          <div class="lyric-line prev" id="lyric-prev">Previous line goes here</div>
-          <div class="lyric-line current" id="lyric-current">Lyrics Window</div>
-          <div class="lyric-line next" id="lyric-next">Next line goes here</div>
-        </div>
-
-        <div class="up-next" id="up-next">
-          <span class="up-next-label">Up Next</span>
-          <span class="up-next-track" id="up-next-track"></span>
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
 <!-- Settings panel: hidden until gear icon is tapped -->
 <div class="settings-panel" id="settings-panel">
   <div class="settings-panel-title">Settings</div>
@@ -122,12 +65,7 @@
   <span>&#9881;</span>
 </button>
 
-<!-- One-time Spotify login; auto-hides once connected -->
-<button id="spotify-connect-btn" class="spotify-connect-btn">Connect Spotify</button>
-
-<script src="js/spotify-auth.js"></script>
 <script src="js/wallpaper.js"></script>
-<script src="js/spotify-player.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>

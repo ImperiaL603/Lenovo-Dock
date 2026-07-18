@@ -1,7 +1,5 @@
 /* ============================================================
-   PHASE 1: static layout only.
-   Real Spotify auth, polling, lrclib sync, and alarm/timer logic
-   will replace the placeholder bits marked "TODO" below.
+   Clock dashboard — clock, alarm/timer panel, settings panel.
    ============================================================ */
 
 // ---------- Clock ----------
@@ -39,96 +37,9 @@ const addBtn = document.getElementById('add-btn');
 
 addBtn.addEventListener('click', () => {
   clockMode.classList.toggle('panel-open');
-  // TODO: once open, a second tap on this button (now rotated into an "x")
-  // should eventually open a small form to create a new alarm/timer.
+  // TODO: a second tap (button rotated into an "x") should open a form to
+  // create a new alarm/timer.
 });
-
-// ---------- Mode switching ----------
-const modes = {
-  clock: document.getElementById('clock-mode'),
-  spotify: document.getElementById('spotify-mode'),
-};
-
-const bgVideo = document.getElementById('bg-video');
-setMode('clock');
-
-function setMode(name) {
-  Object.values(modes).forEach(el => el.classList.remove('active'));
-  modes[name].classList.add('active');
-
-  document.body.classList.toggle('mode-clock', name === 'clock');
-
-  if (name === 'clock') {
-    bgVideo.play();
-  } else {
-    bgVideo.pause(); // saves CPU/GPU while hidden behind Spotify mode
-  }
-}
-
-let currentMode = 'clock';
-
-// "M" stays as a dev shortcut for previewing modes without playback.
-window.addEventListener('keydown', (e) => {
-  if (e.key.toLowerCase() === 'm') {
-    currentMode = currentMode === 'clock' ? 'spotify' : 'clock';
-    setMode(currentMode);
-  }
-});
-
-// ---------- Playback-driven mode switching ----------
-// The player polls every 4s and reports playback state; we switch to Spotify
-// mode on playback and back to Clock after a grace period of no playback.
-const RETURN_TO_CLOCK_MS = 30000;
-let idleTimer = null;
-
-function handlePlayback(isPlaying) {
-  if (isPlaying) {
-    clearTimeout(idleTimer);
-    idleTimer = null;
-    if (currentMode !== 'spotify') {
-      currentMode = 'spotify';
-      setMode('spotify');
-    }
-  } else if (currentMode === 'spotify' && !idleTimer) {
-    idleTimer = setTimeout(() => {
-      idleTimer = null;
-      currentMode = 'clock';
-      setMode('clock');
-    }, RETURN_TO_CLOCK_MS);
-  }
-}
-
-SpotifyPlayer.start(handlePlayback);
-
-// ---------- Lyrics line preview animation (placeholder only) ----------
-// Just cycles through some dummy lines so we can see/tune the spring motion.
-// Will be replaced by real lrclib-synced lines driven by the playback timer.
-const dummyLyrics = [
-  'Previous line goes here',
-  'Lyrics Window',
-  'Next line goes here',
-  'Another line after that',
-  'And one more after this one',
-];
-
-const prevEl = document.getElementById('lyric-prev');
-const currentEl = document.getElementById('lyric-current');
-const nextEl = document.getElementById('lyric-next');
-
-let lyricIndex = 1; // start so "current" = dummyLyrics[1]
-
-function renderLyrics() {
-  prevEl.textContent = dummyLyrics[lyricIndex - 1] ?? '';
-  currentEl.textContent = dummyLyrics[lyricIndex] ?? '';
-  nextEl.textContent = dummyLyrics[lyricIndex + 1] ?? '';
-}
-
-renderLyrics();
-
-setInterval(() => {
-  lyricIndex = (lyricIndex + 1) % dummyLyrics.length;
-  renderLyrics();
-}, 3500);
 
 // ---------- Settings panel toggle ----------
 const settingsBtn = document.getElementById('settings-btn');
@@ -136,9 +47,3 @@ const settingsBtn = document.getElementById('settings-btn');
 settingsBtn.addEventListener('click', () => {
   document.body.classList.toggle('settings-open');
 });
-
-// ---------- Spotify connect (one-time PKCE login) ----------
-const connectBtn = document.getElementById('spotify-connect-btn');
-
-connectBtn.addEventListener('click', () => SpotifyAuth.beginLogin());
-connectBtn.classList.toggle('connected', SpotifyAuth.isConnected());

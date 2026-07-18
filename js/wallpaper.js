@@ -46,7 +46,6 @@
   const STORAGE_KEY = 'wallpaper';
 
   const video = document.getElementById('bg-video');
-  const body = document.body;
 
   function displayName(file) {
     return file
@@ -62,7 +61,7 @@
     localStorage.setItem(STORAGE_KEY, file);
     video.src = `assets/video/${file}`; // forward slashes only — backslashes break loading
     video.load();
-    if (body.classList.contains('mode-clock')) video.play();
+    video.play();
   }
 
   function renderPicker(container) {
