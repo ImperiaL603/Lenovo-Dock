@@ -111,3 +111,9 @@ const settingsBtn = document.getElementById('settings-btn');
 settingsBtn.addEventListener('click', () => {
   document.body.classList.toggle('settings-open');
 });
+
+// ---------- Spotify connect (one-time PKCE login) ----------
+const connectBtn = document.getElementById('spotify-connect-btn');
+
+connectBtn.addEventListener('click', () => SpotifyAuth.beginLogin());
+connectBtn.classList.toggle('connected', SpotifyAuth.isConnected());

@@ -275,6 +275,36 @@ body.settings-open .settings-btn:active {
   transform: rotate(45deg) scale(0.92);
 }
 
+/* ---------- Spotify connect button (top-right, one-time) ---------- */
+.spotify-connect-btn {
+  position: absolute;
+  left: calc(5vw + 3.6rem);
+  bottom: 4vh;
+  height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  border-radius: 999px;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s var(--ease-spring), background 0.25s;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.spotify-connect-btn:active {
+  transform: scale(0.94);
+}
+
+.spotify-connect-btn.connected {
+  display: none;
+}
+
 /* ---------- Settings panel ---------- */
 .settings-panel {
   position: absolute;
